@@ -1,7 +1,7 @@
 {
   "name": "kushki-backend-examples",
   "version": "1.0.0",
-  "description": "",
+  "description": "Examples on node backend for Kushki integration",
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js localhost 8080"

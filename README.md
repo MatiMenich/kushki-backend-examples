@@ -1,2 +1,3 @@
-# kushki-backend-examples
-Created with CodeSandbox
+# Kushki Backend examples
+
+TODO: Readme 😅
