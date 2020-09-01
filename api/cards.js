@@ -47,7 +47,7 @@ const handler = async (req, res) => {
     })
     .catch((error) => {
       console.log(error.response);
-      return res.status(422).send(error.response);
+      return res.status(422).send(error.response.data);
     });
 };
 
