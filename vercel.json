@@ -2,7 +2,7 @@
   "name": "kushki-backend-examples",
   "routes": [
     {
-      "source": "/api/(.*)",
+      "src": "/api/(.*)",
       "methods": ["OPTIONS"],
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
