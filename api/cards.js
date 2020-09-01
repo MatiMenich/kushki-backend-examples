@@ -1,6 +1,23 @@
 const kushkiAPI = require("../src/kushkiAPI");
 
-module.exports = async (req, res) => {
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
+}
+
+const handler = async (req, res) => {
   const token = req.body.token;
   const amount = req.body.amount;
 
@@ -30,6 +47,8 @@ module.exports = async (req, res) => {
     })
     .catch((error) => {
       console.log(error.response);
-      return res.status(422).send(error.response.data);
+      return res.status(422).send(error.response);
     });
 };
+
+module.exports = allowCors(handler)
