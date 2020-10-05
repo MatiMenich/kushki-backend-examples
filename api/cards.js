@@ -13,7 +13,7 @@ const handler = async (req, res) => {
       .send({ status: "error", message: "missing parameter(s)" });
   }
 
-  return kushkiAPI
+  return kushkiAPI()
     .post("/card/v1/charges", {
       token: token,
       amount: {

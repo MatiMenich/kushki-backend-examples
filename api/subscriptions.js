@@ -19,7 +19,7 @@ const handler = async (req, res) => {
 
   const today = new Date();
 
-  return kushkiAPI
+  return kushkiAPI()
     .post("/subscriptions/v1/card", {
       token: token,
       planName,

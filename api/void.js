@@ -11,7 +11,7 @@ const handler = async (req, res) => {
       .send({ status: "error", message: "missing parameter(s)" });
   }
 
-  return kushkiAPI
+  return kushkiAPI()
     .delete(`/v1/charges/${ticketNumber}`, {
       amount: {
         subtotalIva: 0,
