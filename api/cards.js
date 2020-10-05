@@ -7,7 +7,7 @@ const handler = async (req, res) => {
 
   console.log(token, amount);
 
-  if (!req.body.token || !req.body.amount) {
+  if (!token || !amount) {
     return res
       .status(422)
       .send({ status: "error", message: "missing parameter(s)" });
@@ -26,6 +26,7 @@ const handler = async (req, res) => {
       fullResponse: true
     })
     .then((response) => {
+      // Your own logic here...
       console.log(response.data);
       return res.send(response.data);
     })

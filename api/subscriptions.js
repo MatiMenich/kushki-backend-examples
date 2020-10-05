@@ -2,24 +2,42 @@ const kushkiAPI = require("../src/kushkiAPI");
 const allowCors = require("../src/allowCors");
 
 const handler = async (req, res) => {
-  const ticketNumber = req.body.ticketNumber;
+  const token = req.body.token;
   const amount = req.body.amount;
+  const email = req.body.email;
+  const phoneNumber = req.body.phone;
+  const name = req.body.name;
+  const planName = req.body.planName;
 
-  if (!ticketNumber || !amount) {
+  if (!token || !amount || !email || !phone || !name || !planName) {
     return res
       .status(422)
       .send({ status: "error", message: "missing parameter(s)" });
   }
 
+  const [firstName, lastName] = name.split(" ");
+
+  const today = new Date();
+
   return kushkiAPI
-    .post("/card/v1/capture", {
-      ticketNumber,
+    .post("/subscriptions/v1/card", {
+      token: token,
+      planName,
       amount: {
         subtotalIva: 0,
         subtotalIva0: amount,
+        ice: 0,
         iva: 0,
+        currency: "USD"
       },
-      fullResponse: true
+      startDate: today.toISOString().substring(0, 10),
+      periodicity: 'monthly',
+      contactDetails: {
+        firstName,
+        lastName,
+        email,
+        phoneNumber
+      }
     })
     .then((response) => {
       // Your own logic here...

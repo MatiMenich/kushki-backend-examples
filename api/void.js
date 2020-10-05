@@ -5,7 +5,7 @@ const handler = async (req, res) => {
   const ticketNumber = req.body.ticketNumber;
   const amount = req.body.amount;
 
-  if (!req.body.ticketNumber || !req.body.amount) {
+  if (!ticketNumber || !amount) {
     return res
       .status(422)
       .send({ status: "error", message: "missing parameter(s)" });
