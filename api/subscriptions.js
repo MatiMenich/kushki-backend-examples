@@ -9,7 +9,7 @@ const handler = async (req, res) => {
   const name = req.body.name;
   const planName = req.body.planName;
 
-  if (!token || !amount || !email || !phone || !name || !planName) {
+  if (!token || !amount || !email || !phoneNumber || !name || !planName) {
     return res
       .status(422)
       .send({ status: "error", message: "missing parameter(s)" });
